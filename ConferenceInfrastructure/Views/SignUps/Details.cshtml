@@ -1,0 +1,82 @@
+﻿@model ConferenceDomain.Model.SignUp
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Деталі реєстрації</h1>
+
+<div>
+    <hr />
+    <h4>Конференція:</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conference.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conference.Topic.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Topic.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conference.Info)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Info)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conference.Cost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Cost)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conference.DateTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.DateTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Conference.Duration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Duration)
+        </dd>
+        <dt class="col-sm-2">
+         Ім'я організатора
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Organizer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Логін організатора
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Conference.Organizer.Login)
+        </dd>
+        <hr />
+        <h4>Зареєстрований користувач:</h4>
+        <hr />
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Login)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Login)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редагувати</a> |
+    <a asp-action="Index">Повернутись до списку</a>
+</div>
