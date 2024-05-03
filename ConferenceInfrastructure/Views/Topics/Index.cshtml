@@ -33,3 +33,44 @@
 }
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-6">
+        <div id="countUsersByTopicChart"></div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        
+        function drawChart() {
+            fetch('/api/chart/countUsersByTopic')
+                .then(response => response.json())
+                .then(data => {
+                    const dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Тема конференцій');
+                    dataTable.addColumn('number', 'Кількість учасників');
+
+                    data.forEach(item => {
+                        dataTable.addRow([item.topic, item.usersCount]);
+                    });
+
+                    const options = {
+                        title: 'Учасники конференцій за темами',
+                        width: 600,
+                        height: 400,
+                        legend: { position: 'none' },
+                    };
+
+                    const chart = new google.visualization.ColumnChart(document.getElementById('countUsersByTopicChart'));
+                    
+                    chart.draw(dataTable, options);
+                });
+
+        }
+    </script>
+}
+

@@ -79,3 +79,43 @@
 }
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-3">
+        <div id="countByTopicChart"></div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            fetch('/api/chart/countByTopic')
+                .then(response => response.json())
+                .then(data => {
+                    const dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Тема конференцій');
+                    dataTable.addColumn('number', 'Кількість конференцій');
+
+                    data.forEach(item => {
+                        dataTable.addRow([item.topic, item.count]);
+                    });
+
+                    const options = {
+                        title: 'Конференції за темами',
+                        width: 600,
+                        height: 400,
+                        legend: { position: 'none' },
+                    };
+
+                    const chart = new google.visualization.ColumnChart(document.getElementById('countByTopicChart'));
+
+                    chart.draw(dataTable, options);
+                });
+        }
+    </script>
+}
